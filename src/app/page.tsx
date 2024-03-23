@@ -67,12 +67,10 @@ export default function Home() {
               tasks?.map((task) => {
                 return (
                   <Link
+                    key={task._id}
                     href={`/update?taskTitle=${task.taskTitle}&taskDescription=${task.taskDescription}&id=${task._id}`}
                   >
-                    <Card
-                      key={task._id}
-                      className="flex flex-col justify-between"
-                    >
+                    <Card className="flex flex-col justify-between">
                       <CardHeader className="px-5">{task.taskTitle}</CardHeader>
                       <CardDescription className="p-5">
                         {task.taskDescription}
