@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useMutation } from "convex/react";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { api } from "../../../convex/_generated/api";
 import { Id } from "../../../convex/_generated/dataModel";
 import { toast } from "@/components/ui/use-toast";
@@ -45,27 +45,29 @@ const UpdateScreen = () => {
 
   return (
     <main className="flex min-h-screen justify-center items-center bg-red">
-      <div className="w-[500px] h-auto">
-        <h1 className="mb-8 text-3xl font-bold">Update Task</h1>
-        <form onSubmit={handleSubmit}>
-          <Input
-            value={title}
-            placeholder="Task Title"
-            className="mb-4"
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <Textarea
-            value={description}
-            placeholder="Task Description"
-            rows={6}
-            className="mb-4"
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <Button variant={"default"} size={"sm"}>
-            Update task
-          </Button>
-        </form>
-      </div>
+      <Suspense fallback={<h1>Hold on mate</h1>}>
+        <div className="w-[500px] h-auto">
+          <h1 className="mb-8 text-3xl font-bold">Update Task</h1>
+          <form onSubmit={handleSubmit}>
+            <Input
+              value={title}
+              placeholder="Task Title"
+              className="mb-4"
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <Textarea
+              value={description}
+              placeholder="Task Description"
+              rows={6}
+              className="mb-4"
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <Button variant={"default"} size={"sm"}>
+              Update task
+            </Button>
+          </form>
+        </div>
+      </Suspense>
     </main>
   );
 };
