@@ -25,6 +25,6 @@ export const updateTask = mutation({
     handler: async (ctx, args) => {
         const { id, title, description } = args;
         await ctx.db.patch(id, { taskTitle: title, taskDescription: description });
-        
+        return;
     }
 })
