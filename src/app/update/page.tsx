@@ -45,29 +45,27 @@ const UpdateScreen = () => {
 
   return (
     <main className="flex min-h-screen justify-center items-center bg-red">
-      <Suspense fallback={<h1>Hold on mate</h1>}>
-        <div className="w-[500px] h-auto">
-          <h1 className="mb-8 text-3xl font-bold">Update Task</h1>
-          <form onSubmit={handleSubmit}>
-            <Input
-              value={title}
-              placeholder="Task Title"
-              className="mb-4"
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <Textarea
-              value={description}
-              placeholder="Task Description"
-              rows={6}
-              className="mb-4"
-              onChange={(e) => setDescription(e.target.value)}
-            />
-            <Button variant={"default"} size={"sm"}>
-              Update task
-            </Button>
-          </form>
-        </div>
-      </Suspense>
+      <div className="w-[500px] h-auto">
+        <h1 className="mb-8 text-3xl font-bold">Update Task</h1>
+        <form onSubmit={handleSubmit}>
+          <Input
+            value={title}
+            placeholder="Task Title"
+            className="mb-4"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <Textarea
+            value={description}
+            placeholder="Task Description"
+            rows={6}
+            className="mb-4"
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <Button variant={"default"} size={"sm"}>
+            Update task
+          </Button>
+        </form>
+      </div>
     </main>
   );
 };

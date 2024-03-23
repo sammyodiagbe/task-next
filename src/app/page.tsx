@@ -3,7 +3,7 @@
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { useToast } from "@/components/ui/use-toast";
@@ -63,22 +63,27 @@ export default function Home() {
         <section>
           <h2 className="mb-8 font-bold">Your tasks</h2>
           <div className="grid grid-cols-2 gap-2 ">
-            {tasks?.length ? (
-              tasks?.map((task) => {
-                return (
-                  <Link
-                    key={task._id}
-                    href={`/update?taskTitle=${task.taskTitle}&taskDescription=${task.taskDescription}&id=${task._id}`}
-                  >
+            <Suspense fallback={<p>Loading</p>}>
+              {tasks?.length ? (
+                tasks?.map((task) => {
+                  return (
                     <Card className="flex flex-col justify-between">
                       <CardHeader className="px-5">{task.taskTitle}</CardHeader>
                       <CardDescription className="p-5">
                         {task.taskDescription}
                       </CardDescription>
-                      <CardFooter className="grid justify-end">
+                      <CardFooter className="flex  justify-end">
+                        <Button variant="outline" className="mr-2" asChild>
+                          <Link
+                            key={task._id}
+                            href={`/update?taskTitle=${task.taskTitle}&taskDescription=${task.taskDescription}&id=${task._id}`}
+                          >
+                            Update
+                          </Link>
+                        </Button>
                         <Button
-                          variant="outline"
-                          className="bg-transparent hover:bg-red-500 text-red-500 border-b-2 border-b-red-500"
+                          variant="ghost"
+                          className="bg-transparent hover:bg-red-500 text-red-500 "
                           onClick={() => {
                             deleteTask({ id: task._id });
                           }}
@@ -87,12 +92,12 @@ export default function Home() {
                         </Button>
                       </CardFooter>
                     </Card>
-                  </Link>
-                );
-              })
-            ) : (
-              <h2>No task yet</h2>
-            )}
+                  );
+                })
+              ) : (
+                <h2>No task yet</h2>
+              )}
+            </Suspense>
           </div>
         </section>
       </div>
