@@ -11,8 +11,6 @@ import { Id } from "../../../convex/_generated/dataModel";
 import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 
-const type = {};
-
 const UpdateScreen = () => {
   const query = useSearchParams();
   const router = useRouter();
@@ -28,19 +26,18 @@ const UpdateScreen = () => {
     event.preventDefault();
     updateTask({ title, id, description });
 
-    console.log("done doing whatever");
-    toast({
-      description: "Update Successful",
-      action: (
-        <Button
-          onClick={() => {
-            router.push("/");
-          }}
-        >
-          Go home
-        </Button>
-      ),
-    });
+    // toast({
+    //   description: "Update Successful",
+    //   action: (
+    //     <Button
+    //       onClick={() => {
+    //         router.push("/");
+    //       }}
+    //     >
+    //       Go home
+    //     </Button>
+    //   ),
+    // });
   };
 
   return (
