@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useMutation } from "convex/react";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { api } from "../../../convex/_generated/api";
 import { Id } from "../../../convex/_generated/dataModel";
 import { toast } from "@/components/ui/use-toast";
@@ -26,18 +26,18 @@ const UpdateScreen = () => {
     event.preventDefault();
     updateTask({ title, id, description });
 
-    // toast({
-    //   description: "Update Successful",
-    //   action: (
-    //     <Button
-    //       onClick={() => {
-    //         router.push("/");
-    //       }}
-    //     >
-    //       Go home
-    //     </Button>
-    //   ),
-    // });
+    toast({
+      description: "Update Successful",
+      action: (
+        <Button
+          onClick={() => {
+            router.push("/");
+          }}
+        >
+          Go home
+        </Button>
+      ),
+    });
   };
 
   return (
@@ -67,4 +67,10 @@ const UpdateScreen = () => {
   );
 };
 
-export default UpdateScreen;
+export default function Update() {
+  return (
+    <Suspense>
+      <UpdateScreen />
+    </Suspense>
+  );
+}
