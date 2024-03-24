@@ -1,5 +1,6 @@
 import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Update task",
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="bg-red">
-      {children}
+      <Suspense>{children}</Suspense>
       <Toaster />
     </div>
   );

@@ -63,41 +63,39 @@ export default function Home() {
         <section>
           <h2 className="mb-8 font-bold">Your tasks</h2>
           <div className="grid grid-cols-2 gap-2 ">
-            <Suspense fallback={<p>Loading</p>}>
-              {tasks?.length ? (
-                tasks?.map((task) => {
-                  return (
-                    <Card className="flex flex-col justify-between">
-                      <CardHeader className="px-5">{task.taskTitle}</CardHeader>
-                      <CardDescription className="p-5">
-                        {task.taskDescription}
-                      </CardDescription>
-                      <CardFooter className="flex  justify-end">
-                        <Button variant="outline" className="mr-2" asChild>
-                          <Link
-                            key={task._id}
-                            href={`/update?taskTitle=${task.taskTitle}&taskDescription=${task.taskDescription}&id=${task._id}`}
-                          >
-                            Update
-                          </Link>
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          className="bg-transparent hover:bg-red-500 text-red-500 "
-                          onClick={() => {
-                            deleteTask({ id: task._id });
-                          }}
+            {tasks?.length ? (
+              tasks?.map((task) => {
+                return (
+                  <Card className="flex flex-col justify-between">
+                    <CardHeader className="px-5">{task.taskTitle}</CardHeader>
+                    <CardDescription className="p-5">
+                      {task.taskDescription}
+                    </CardDescription>
+                    <CardFooter className="flex  justify-end">
+                      <Button variant="outline" className="mr-2" asChild>
+                        <Link
+                          key={task._id}
+                          href={`/update?taskTitle=${task.taskTitle}&taskDescription=${task.taskDescription}&id=${task._id}`}
                         >
-                          Delete
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                  );
-                })
-              ) : (
-                <h2>No task yet</h2>
-              )}
-            </Suspense>
+                          Update
+                        </Link>
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        className="bg-transparent hover:bg-red-500 text-red-500 "
+                        onClick={() => {
+                          deleteTask({ id: task._id });
+                        }}
+                      >
+                        Delete
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                );
+              })
+            ) : (
+              <h2>No task yet</h2>
+            )}
           </div>
         </section>
       </div>

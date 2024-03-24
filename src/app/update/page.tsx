@@ -67,10 +67,4 @@ const UpdateScreen = () => {
   );
 };
 
-export default function Update() {
-  return (
-    <Suspense>
-      <UpdateScreen />
-    </Suspense>
-  );
-}
+export default UpdateScreen;
