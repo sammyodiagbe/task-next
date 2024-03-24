@@ -1,6 +1,5 @@
 import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
-import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Update task",
