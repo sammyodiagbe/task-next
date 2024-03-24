@@ -1,3 +1,5 @@
+"use client";
+
 import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
 import { Suspense } from "react";
