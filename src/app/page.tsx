@@ -66,7 +66,10 @@ export default function Home() {
             {tasks?.length ? (
               tasks?.map((task) => {
                 return (
-                  <Card className="flex flex-col justify-between">
+                  <Card
+                    className="flex flex-col justify-between"
+                    key={task._id}
+                  >
                     <CardHeader className="px-5">{task.taskTitle}</CardHeader>
                     <CardDescription className="p-5">
                       {task.taskDescription}
